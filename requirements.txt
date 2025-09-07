@@ -1,0 +1,30 @@
+ai-trader/
+├── README.md
+├── LICENSE
+├── requirements.txt
+├── data/
+│ ├── raw/
+│ └── processed/
+├── src/
+│ ├── data/
+│ │ └── alphavantage.py
+│ ├── features/
+│ │ └── indicators.py
+│ ├── models/
+│ │ ├── train_ml.py
+│ │ └── ml_utils.py
+│ ├── backtest/
+│ │ └── vectorbt_backtest.py
+│ ├── execution/
+│ │ └── ccxt_adapter.py
+│ └── utils/
+│ ├── risk_metrics.py
+│ └── pack_repo.py
+├── examples/
+│ ├── simple_sma_strategy.py
+│ └── ml_strategy_demo.py
+├── notebooks/
+│ ├── example_notebook.ipynb
+│ └── walkforward_cv.ipynb
+└── .github/
+└── workflows/ci.yml
