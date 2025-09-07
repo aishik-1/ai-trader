@@ -1,0 +1,20 @@
+import pandas as pd
+from sklearn.model_selection import TimeSeriesSplit
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+from src.models.ml_utils import build_features
+
+
+df = pd.read_csv("../data/raw/ETHUSD_daily.csv", index_col=0, parse_dates=True)
+X, y = build_features(df)
+
+
+splitter = TimeSeriesSplit(n_splits=5)
+for i, (train_idx, test_idx) in enumerate(splitter.split(X)):
+X_train, X_test = X.iloc[train_idx], X.iloc[test_idx]
+y_train, y_test = y.iloc[train_idx], y.iloc[test_idx]
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X_train, y_train)
+preds = model.predict(X_test)
+acc = accuracy_score(y_test, preds)
+print(f"Fold {i} accuracy:", acc)
